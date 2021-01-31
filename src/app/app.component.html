@@ -5,11 +5,51 @@
   <img src="assets/images/logo.png" height="36px">
   <span class="toolbar-title">Auth Concept</span>
   <span class="example-spacer"></span>
-<!--  <button mat-icon-button class="mat-focus-indicator example-icon mat-icon-button mat-button-base favorite-icon" aria-label="Example icon-button with heart icon">-->
-<!--    <mat-icon>favorite</mat-icon>-->
-<!--  </button>-->
-<!--  <button mat-icon-button class="mat-focus-indicator example-icon mat-icon-button mat-button-base" aria-label="Example icon-button with share icon">-->
-<!--    <mat-icon>share</mat-icon>-->
-<!--  </button>-->
+  <button mat-icon-button (click)="login()" class="mat-focus-indicator example-icon mat-icon-button mat-button-base favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>login</mat-icon>
+  </button>
+  <button mat-icon-button (click)="logoff()" class="mat-focus-indicator example-icon mat-icon-button mat-button-base" aria-label="Example icon-button with share icon">
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+
+<div class="container">
+
+  <div id="formulari">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Identificador</mat-label>
+        <input matInput [(ngModel)]="identificador">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Empresa</mat-label>
+        <input matInput [(ngModel)]="empresa">
+      </mat-form-field>
+    </p>
+
+    <button mat-flat-button color="primary" (click)="refresh()"><mat-icon>cached</mat-icon>Refresh</button>
+  </div>
+
+  <mat-card class="center">
+    <mat-card-header>
+      <mat-card-title>Dades usuari</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+        <dt>Usuari:</dt>
+        <dd>{{usuari}}</dd>
+        <dt>Rols:</dt>
+        <dd>
+          <ul>
+            <li *ngFor="let rol of rols">{{rol}}</li>
+          </ul>
+        </dd>
+      </dl>
+    </mat-card-content>
+
+  </mat-card>
+
+  <router-outlet></router-outlet>
+</div>
